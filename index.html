@@ -56,6 +56,35 @@
 </section>
 
 <section>
+	<h2>Docker Inc.</h2>
+	<div style="position: absolute; left: 1%; width: 48%;" class="absolute-element">
+		<p><b>About Docker Inc.</b></p>
+		<ul>
+			<ul style="font-size: 24px;">
+				<li>Company behind the Docker ecosystem</li>
+				<li>Launched in March 2013</li>
+				<li>HQ in San Francisco</li>
+				<li>Originally dotCloud</li>
+			</ul>
+			<br>
+			<p align="center"><b>By the numbers.</b></p>
+			<ul style="font-size: 24px;">
+				<li>20,000+ GitHub stars</li>
+				<li>200M+ Docker Engine downloads</li>
+				<li>100,000+ "Dockerized" applications in the Docker Hub Registry</li>
+				<li>170+ Docker Meetup Groups in 50 countries</li>
+				<li>900+ community contributors</li>
+				<li>75,000 third-party projects on GitHub using Docker</li>
+
+			</ul>
+		</ul>
+	</div>
+	<div style="position: absolute; left: 52%; width: 48%;" class="absolute-element">
+		<img src="docker-img/containership_gg.jpg">
+	</div>	
+</section>
+
+<section>
 	<h2>What is Docker?</h2>
 	<h4>
 		<p class="fragment" data-fragment-index="0">
@@ -68,6 +97,7 @@
 		<ul style="font-size: 24px;" class="fragment" data-fragment-index="2">
 			<li>A portable, lightweight application <br>
 				runtime and packaging tool. </li>
+			<li>Written in Golang.</li>
 		</ul>
 	</div>
 	<div style="position: absolute; left: 52%; width: 48%;" class="absolute-element">
@@ -79,37 +109,31 @@
 	</div>
 	<br><br><br><br>
 	<div>
-		<p class="fragment" data-fragment-index="3"><img src="docker-img/build-ship-run.png" /><br/></p>
+		<p class="fragment" data-fragment-index="2"><img src="docker-img/build-ship-run.png" /><br/></p>
 	</div>
 </section>
 
 <section>
-	<h2>Docker Inc.</h2>
+	<h2>Why do we care?</h2>
 	<div style="position: absolute; left: 1%; width: 48%;" class="absolute-element">
-		<p class="fragment" data-fragment-index="1"><b>About Docker Inc.</b></p>
-		<ul>
-			<ul style="font-size: 24px;">
-				<li class="fragment" data-fragment-index="2">Company behind the Docker ecosystem</li>
-				<li class="fragment" data-fragment-index="3">Launched in March 2013</li>
-				<li class="fragment" data-fragment-index="4">HQ in San Francisco</li>
-				<li class="fragment" data-fragment-index="5">Originally dotCloud</li>
-			</ul>
-			<br>
-			<p class="fragment" align="center" data-fragment-index="6"><b>By the numbers.</b></p>
-			<ul style="font-size: 24px;">
-				<li class="fragment" data-fragment-index="7">20,000+ GitHub stars</li>
-				<li class="fragment" data-fragment-index="8">200M+ Docker Engine downloads</li>
-				<li class="fragment" data-fragment-index="9">100,000+ "Dockerized" applications in the Docker Hub Registry</li>
-				<li class="fragment" data-fragment-index="10">170+ Docker Meetup Groups in 50 countries</li>
-				<li class="fragment" data-fragment-index="11">900+ community contributors</li>
-				<li class="fragment" data-fragment-index="12">75,000 third-party projects on GitHub using Docker</li>
-
-			</ul>
+		<p><img src="docker-img/devs.png"></br>
+			<b>Devs</b></p>
+		<ul style="font-size: 24px;" class="fragment" data-fragment-index="2">
+			<li>Clean portable runtime environment</li>
+			<li>No worries about missing dependencies, packages, etc.</li>
+			<li>A VM without the overhead of a VM. </li>
+			<li>Instant replay and reset of image snapshots</li>
 		</ul>
 	</div>
 	<div style="position: absolute; left: 52%; width: 48%;" class="absolute-element">
-		<img src="docker-img/containership_gg.jpg">
-	</div>	
+		<p><img src="docker-img/ops.png"></br>
+		<b>Ops</b></p>
+		<ul style="font-size: 24px;" class="fragment" data-fragment-index="2">
+			<li>Make entire lifecycle more efficient, consistent, and repeatable</li>
+			<li>Eliminate inconsistencies between environments</li>
+			<li>Because the containers are so lightweight, address significant performance, costs, deployment, and portability issues normally associated with VMs</li>
+		</ul>			
+	</div>
 </section>
 
 <section>
@@ -166,43 +190,58 @@
 </section>
 
 <section>
-	<h2>Why Developers Care</h2>
-	<div style="text-align: left;">
-		Build once... (finally) run <i><font color="#073763">anywhere<b>*</b></font></i>
-		<ul>
-			<li class="fragment" data-fragment-index="0">A clean, safe, hygienic, portable runtime environment for your app.</li>
-			<li class="fragment" data-fragment-index="1">No worries about missing dependencies, packages and other pain points during subsequent deployments.</li>
-			<li class="fragment" data-fragment-index="2">Run each app in its own isolated container, so you can run various versions of libraries and other dependencies for each app without worrying.</li>
-			<li class="fragment" data-fragment-index="3">Automate testing, integration, packaging...anything you can script.</li>
-			<li class="fragment" data-fragment-index="4">Reduce/eliminate concerns about compatibility on different platforms, either your own or your customers.</li>
-			<li class="fragment" data-fragment-index="5">Cheap, zero-penalty containers to deploy services. A VM without the overhead of a VM. Instant replay and reset of image snapshots.</li>
-		</ul>
-	</div>
-	<div style="text-align: center; font-size: 24px; line-height: 1.1em; ">
-		<i><font color="#073763">* Where "anywhere" means an x86 server running a modern Linux kernel<br/>
-			(3.2+ generally or 2.6.32+ for RHEL 6.5+,&nbsp;Fedora, &amp; related)</font></i>
-	</div>
-</section>
-
-<section>
-	<h2>Why Administrators Care</h2>
-	<div style="text-align: left;">
-	Configure once... run anything
-	<ul>
-		<li class="fragment" data-fragment-index="0">Make the entire lifecycle more efficient, consistent, and repeatable</li>
-		<li class="fragment" data-fragment-index="1">Increase the quality of code produced by developers.</li>
-		<li class="fragment" data-fragment-index="2">Eliminate inconsistencies between development, test, production, and customer environments.</li>
-		<li class="fragment" data-fragment-index="3">Support segregation of duties.</li>
-		<li class="fragment" data-fragment-index="4">Significantly improves the speed and reliability of continuous deployment and continuous integration systems.</li>
-		<li class="fragment" data-fragment-index="5">Because the containers are so lightweight, address significant performance, costs, deployment, and portability issues normally associated with VMs.</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Why it Works: Separation of Concerns</h2>
+	<h2>VMs vs Containers</h2>
 	<p>
-		<img src="docker-img/separation-of-concerns.png">
+		<img src="docker-img/containers-vs-vms.png">
 	</p>
+</section>
+
+<section>
+	<h2>Why are Docker Containers Lightweight?</h2>
+	<p>
+		<img src="docker-img/why-are-containers-lightwight.png">
+	</p>
+</section>
+
+<section>
+	<h2>Pets vs Cattle</h2>
+</section>
+
+<section>
+	<img src="docker-img/pets.jpg">
+</section>
+
+<section>
+		<img src="docker-img/cattle.jpg" width="55%" height="55%">
+</section>
+
+<section>
+	<h2>Docker Client-Server</h2>
+	<img src="docker-img/overview.png">
+</section>
+
+<section>
+	<h2>What are the Basics of a Docker System?</h2>
+	<p>
+		<img src="docker-img/basics-of-docker-system.png">
+	</p>
+</section>
+
+<section>
+	<h2>Changes and Updates</h2>
+	<p>
+		<img src="docker-img/changes-and-updates.png">
+	</p>
+</section>
+
+<section>
+	<h2>Immutable Infrastructure</h2>
+			<ul style="font-size: 24px;">
+				<li class="fragment" data-fragment-index="1">Servers are deployed once and not changed</li>
+				<li class="fragment" data-fragment-index="2">If they are changed for some reason, they are marked for garbage collection</li>
+				<li class="fragment" data-fragment-index="3">Software is never upgraded on an existing server</li>
+				<li class="fragment" data-fragment-index="4">Instead the server is replaced with a new functionally equivalent server</li>
+			</ul>	
 </section>
 
 <section>
@@ -245,34 +284,6 @@
 			</ul>
 		</ul>
 	</div>
-</section>
-
-<section>
-	<h2>VMs vs Containers</h2>
-	<p>
-		<img src="docker-img/containers-vs-vms.png">
-	</p>
-</section>
-
-<section>
-	<h2>Why are Docker Containers Lightweight?</h2>
-	<p>
-		<img src="docker-img/why-are-containers-lightwight.png">
-	</p>
-</section>
-
-<section>
-	<h2>What are the Basics of a Docker System?</h2>
-	<p>
-		<img src="docker-img/basics-of-docker-system.png">
-	</p>
-</section>
-
-<section>
-	<h2>Changes and Updates</h2>
-	<p>
-		<img src="docker-img/changes-and-updates.png">
-	</p>
 </section>
 
 <section>
