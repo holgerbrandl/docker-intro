@@ -52,6 +52,16 @@
 </section>
 
 <section>
+	<h2>Agenda</h2><br>
+	<h4>Introduction</h4>
+	<h4>The Challenge</h4>
+	<h4>Docker Containers</h4>
+	<h4>Docker Images</h4>
+	<h4>Working With Docker and Its Tools</h4>
+	<h4>Demo</h4>
+</section>
+
+<section>
 	<img src="docker-img/dockerdockerdocker.bmp">
 </section>
 
@@ -65,6 +75,7 @@
 				<li>Launched in March 2013</li>
 				<li>HQ in San Francisco</li>
 				<li>Originally dotCloud</li>
+				<li>Released Docker 1.0 in June of 2014</li>
 			</ul>
 			<br>
 			<p align="center"><b>By the numbers.</b></p>
@@ -131,9 +142,23 @@
 		<ul style="font-size: 24px;" class="fragment" data-fragment-index="2">
 			<li>Make entire lifecycle more efficient, consistent, and repeatable</li>
 			<li>Eliminate inconsistencies between environments</li>
-			<li>Because the containers are so lightweight, address significant performance, costs, deployment, and portability issues normally associated with VMs</li>
+			<li>Because the containers are so lightweight they address significant performance, cost, deployment, and portability issues normally associated with VMs</li>
 		</ul>			
 	</div>
+</section>
+
+<section>
+	<h2>Agenda</h2><br>
+	<h4><p style="opacity:.25">Introduction</p></h4>
+	<h4>The Challenge</h4>
+	<h4>Docker Containers</h4>
+	<h4>Docker Images</h4>
+	<h4>Working With Docker and Its Tools</h4>
+	<h4>Demo</h4>
+</section>
+
+<section>
+	<img src="docker-img/worked-fine-in-dev.jpg">
 </section>
 
 <section>
@@ -186,21 +211,116 @@
 </section>
 
 <section>
-	<img src="docker-img/worked-fine-in-dev.jpg">
+	<h2>Agenda</h2><br>
+	<h4><p style="opacity:.25">Introduction</p></h4>
+	<h4><p style="opacity:.25">The Challenge</p></h4>
+	<h4>Docker Containers</h4>
+	<h4>Docker Images</h4>
+	<h4>Working With Docker and Its Tools</h4>
+	<h4>Demo</h4>
+</section>
+
+<section
+	<h2></h2>
+	<div style="position: absolute; left: 1%; width: 48%;" class="absolute-element">
+			<h2>Containers</h2>
+			How you <b>run</b> your application
+	</div>
+	<div style="position: absolute; left: 52%; width: 48%;" class="absolute-element">
+		<h2>Images</h2>
+			How you <b>store</b> your application		
+	</div>
 </section>
 
 <section>
-	<h2>VMs vs Containers</h2>
+	<h2>Virtual Machines vs Containers</h2>
 	<p>
 		<img src="docker-img/containers-vs-vms.png">
 	</p>
 </section>
 
 <section>
-	<h2>Why are Docker Containers Lightweight?</h2>
-	<p>
-		<img src="docker-img/why-are-containers-lightwight.png">
-	</p>
+	<h2>Containers and Virtual Machines Are Complementary</h2>
+		<ul class="fragment" data-fragment-index="1"><br>
+			<li>Virtual Machines are best used to allocate chunks of hardware resources</li>
+			<li>Containers operate at the process level, which makes them very lightweight<br>
+				and perfect as a unit of software delievery</li><br><br><br><br>
+		</ul>
+</section>
+
+<section>
+	<h2>Under the Hood</h2><br><br>
+	<img src="docker-img/underthehood.jpg">
+</section>
+
+<section>
+	<h2>The Tech That Makes A Container</h2>
+		<ul class="fragment" data-fragment-index="1"><br>
+			<li>Isolation provided by Linux kernel namespaces</li>
+			<li>Isolation provided by cgroups</li>
+			<li>Copy-on-write file systems with layered file systems that are fast and require limited disk usage</li>
+			<li>A native Linux container format that Docker calls libcontainer</li>
+			<br><br><br><br>
+		</ul>
+</section>
+
+<section>
+	<h2>Linux Kernel Namespaces</h2><br>
+		<ul>
+			<li class="fragment" data-fragment-index="1"><b>Mount:</b> provides file system isolation. Each container is its own root filesystem</li>
+			<li class="fragment" data-fragment-index="2"><b>Process:</b> each contaienr runs in its own process environment</li>
+			<li class="fragment" data-fragment-index="3"><b>Network:</b> seperate virtual interfaces and IP addressing between containers</li>
+			<li class="fragment" data-fragment-index="4"><b>UTS:</b> allows a container to have it's own hostname independently from the host system along with other containers</li>
+			<li class="fragment" data-fragment-index="5"><b>IPC:</b> used for isolating interprocess communication, things like SysV message queues</li>
+			<li class="fragment" data-fragment-index="6"><b>User:</b> allows for seperate users in the container and run as root in the contaier but not on the host's file system</li>
+		</ul>
+</section>	
+
+<section>
+	<h2>Control Groups (cgroups)</h2>
+		<ul>
+			<li class="fragment" data-fragment-index="1">Resource isolation and grouping</li>
+			<li class="fragment" data-fragment-index="2">Enables you to limits and contraints on a container's resources</li>
+			<li class="fragment" data-fragment-index="3">The following resources are allocated to each Docker container using cgroups:</li>
+			<ul>
+				<li class="fragment" data-fragment-index="3">Memory</li>
+				<li class="fragment" data-fragment-index="3">CPU</li>
+				<li class="fragment" data-fragment-index="3">Block I/O</li>
+				<li class="fragment" data-fragment-index="3">Devices</li>
+			</ul>
+		</ul>
+</section>
+
+<section>
+	<h2>Copy-On-Write</h2>
+		<img src="docker-img/copy-on-write.png">
+</section>
+
+<section>
+	<h2>libcontainer</h2>
+	Libcontainer provides a native Go implementation for creating containers with namespaces, cgroups, capabilities, and filesystem access controls. It allows you to manage the lifecycle of the container performing additional operations after the container is created.
+</section>
+
+<section>
+	<h2>Agenda</h2><br>
+	<h4><p style="opacity:.25">Introduction</p></h4>
+	<h4><p style="opacity:.25">The Challenge</p></h4>
+	<h4><p style="opacity:.25">Docker Containers</p></h4>
+	<h4>Docker Images</h4>
+	<h4>Working With Docker and Its Tools</h4>
+	<h4>Demo</h4>
+</section>
+
+<section
+	<h2></h2>
+	<div style="position: absolute; left: 1%; width: 48%;" class="absolute-element">
+			<h2>Containers</h2>
+			How you <b>run</b> your application
+	</div>
+	<div style="position: absolute; left: 52%; width: 48%;" class="absolute-element">
+		<h2>Images</h2>
+			How you <b>store</b> your application		
+	</div>
 </section>
 
 <section>
@@ -284,6 +404,11 @@
 			</ul>
 		</ul>
 	</div>
+</section>
+
+<section>
+	<h2>Docker Compose</h2>
+		<p>Compose is a tool for defining and running complex applications with Docker. With Compose, you define a multi-container application in a single file, then spin your application up in a single command which does everything that needs to be done to get it running.</p>
 </section>
 
 <section>
