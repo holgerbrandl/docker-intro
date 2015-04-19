@@ -7,7 +7,7 @@
 		<title>Intro to Docker</title>
 
 		<meta name="description" content="Intro to Docker">
-		<meta name="author" content="Docker Inc, adapted by John Lewis">
+		<meta name="author" content="Docker Inc, adapted by Jon Brouse">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -122,22 +122,6 @@
 	<div>
 		<p class="fragment" data-fragment-index="2"><img src="docker-img/build-ship-run.png" /><br/></p>
 	</div>
-</section>
-
-<section>
-	<h2>Docker Client-Server</h2>
-	<img src="docker-img/overview.png">
-</section>
-
-<section>
-	<h2>Concepts and Interactions</h2><br>
-	<ul>
-		<li class="fragment" data-fragment-index="1">Host - the machine that is running the containers</li>
-		<li class="fragment" data-fragment-index="2">Image - a hierarchy of files, with meta-data for how to run a container</li>
-		<li class="fragment" data-fragment-index="3">Registry - a repository of images</li>
-		<li class="fragment" data-fragment-index="4">Volume - storage outside the container</li>
-		<li class="fragment" data-fragment-index="5">Dockerfile - a script for creating images</li>
-	</ul>
 </section>
 
 <section>
@@ -257,9 +241,9 @@
 
 <section>
 	<h2>Containers and Virtual Machines Are Complementary</h2>
-		<ul class="fragment" data-fragment-index="1"><br>
-			<li>Virtual Machines are best used to allocate chunks of hardware resources</li>
-			<li>Containers operate at the process level, which makes them very lightweight<br>
+		<ul><br>
+			<li class="fragment" data-fragment-index="1">Virtual Machines are best used to allocate chunks of hardware resources</li>
+			<li class="fragment" data-fragment-index="2">Containers operate at the process level, which makes them very lightweight<br>
 				and perfect as a unit of software delievery</li><br><br><br><br>
 		</ul>
 </section>
@@ -272,10 +256,10 @@
 <section>
 	<h2>The Tech That Makes A Container</h2>
 		<ul class="fragment" data-fragment-index="1"><br>
-			<li>Isolation provided by Linux kernel namespaces</li>
-			<li>Isolation provided by cgroups</li>
-			<li>Copy-on-write file systems with layered file systems that are fast and require limited disk usage</li>
-			<li>A native Linux container format that Docker calls libcontainer</li>
+			<li><b>namespaces</b> - provide isolation</li>
+			<li><b>cgroups</b>- provide resource control</li>
+			<li><b>copy-on-write file system</b> - layered file systems that are fast and require limited disk usage</li>
+			<li><b>libcontainer</b> - a native Linux container format that Docker</li>
 			<br><br><br><br>
 		</ul>
 </section>
@@ -359,6 +343,18 @@
 </section>
 
 <section>
+	<h2>Size Matters</h2><br>
+	<div align="left">Here is some data on commonly used images:<br><br>
+	<ul>
+		<li><code>scratch</code> - this is the ultimate base image and it has 0 files and 0 size</li>
+		<li><code>busybox</code> - a minimal Unix weighing in at 2.5 MB and around 10000 files</li>
+		<li><code>debian:jessie</code> - the latest Debian is 122 MB and around 18000 files</li>
+		<li><code>ubuntu:14.04</code> - Ubuntu is 197 MB and has around 23000 files</li>
+	</ul>
+</div>
+</section>
+
+<section>
 	<h2>Dockerfile </h2>
 	<pre>
 FROM debian:wheezy
@@ -378,6 +374,8 @@ RUN apt-get update && \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
+COPY www-content /var/www/
+
 VOLUME ["/var/cache/nginx"]
 
 EXPOSE 80 443
@@ -387,10 +385,25 @@ CMD ["nginx", "-g", "daemon off;"]
 </section>
 
 <section>
+	<h2>Docker Client-Server</h2>
+	<img src="docker-img/overview.png">
+</section>
+
+<section>
 	<h2>The Basics of a Docker System</h2>
 	<p>
 		<img src="docker-img/basics-of-docker-system.png">
 	</p>
+</section>
+
+<section>
+	<h2>Let's review the components</h2><br>
+		<ul>
+			<li>Docker Client - allows users to create images and run containers</li>
+			<li>Docker Daemon - listens for the client and talks to libcontainer</li>
+			<li>libcontainer - talks to the host's kernel and sets up namespaces and cgroups</li>
+			<li>Registry - hosts images</li>
+		</ul>
 </section>
 
 <section>
@@ -501,64 +514,31 @@ CMD ["nginx", "-g", "daemon off;"]
 </section>
 
 <section>
-	<h2>Ecosystem Support</h2>
-	<font style="font-size: 28px; line-height: 1.1em; ">
-		<ul>
-			<li class="fragment" data-fragment-index="0">Operating systems</li>
-			<ul>
-				<li class="fragment" data-fragment-index="0">Virtually any distribution with a 2.6.32+ kernel</li>
-				<li class="fragment" data-fragment-index="0">Red Hat/Docker collaboration to make work across RHEL 6.4+, Fedora, and other members of the family (2.6.32 +)</li>
-				<li class="fragment" data-fragment-index="0">CoreOS—Small core OS purpose built with Docker</li>
-			</ul>
-			<li class="fragment" data-fragment-index="1">OpenStack</li>
-			<ul>
-				<li class="fragment" data-fragment-index="1">Docker integration into NOVA (&amp; compatibility with Glance, Horizon, etc.) accepted for Havana release</li>
-			</ul>
-			<li class="fragment" data-fragment-index="2">Private PaaS</li>
-			<ul>
-				<li data-fragment-index="2" class="fragment">OpenShift, Solum (Rackspace, OpenStack), Other TBA</li>
-			</ul>
-			<li class="fragment" data-fragment-index="3">Public PaaS</li>
-			<ul>
-				<li data-fragment-index="3" class="fragment">Deis, Voxoz, Cocaine (Yandex), Baidu PaaS</li>
-			</ul>
-			<li data-fragment-index="4" class="fragment">Public IaaS</li>
-			<ul>
-				<li data-fragment-index="4" class="fragment">Native support in Rackspace, Digital Ocean,+++</li>
-				<li data-fragment-index="4" class="fragment">AMI (or equivalent) available for AWS &amp; other</li>
-			</ul>
-			<li data-fragment-index="5" class="fragment">DevOps Tools</li>
-			<ul>
-				<li data-fragment-index="5" class="fragment">Integrations with Chef, Puppet, Jenkins, Travis, Salt, Ansible +++</li>
-			</ul>
-			<li data-fragment-index="6" class="fragment">Orchestration tools</li>
-			<ul>
-				<li data-fragment-index="6" class="fragment">Mesos, Heat, ++</li>
-				<li data-fragment-index="6" class="fragment">Shipyard &amp; others purpose built for Docker</li>
-			</ul>
-			<li data-fragment-index="7" class="fragment">Applications</li>
-			<ul>
-				<li data-fragment-index="7" class="fragment">1000’s of Dockerized applications available at index.docker.io</li>
-			</ul>
-		</ul>
-	</font>
-</section>
-
-<section>
-	<h2>Want to Learn More?</h2>
-	<ul>
+	<h2>Want to learn more?</h2>
+	<div style="position: absolute; left: 1%; top: 100px; width: 48%;" class="absolute-element">
+		<p><b>Resources</b></p>
+		<ul style="text-align: left; line-height=1.1em;">
+		<li><a href="https://docs.docker.com/">Official Docker Docs</a></li>
 		<li><a href="https://www.docker.com/tryit/">Interactive 10-minute Tutorial</a></li>
 		<li><a href="https://github.com/wsargent/docker-cheat-sheet">Docker Cheat Sheet</a></li>
-		<li><a href="http://www.docker.com/">www.docker.com</a></li>
-
-		<li><a href=""http://crosbymichael.com/creating-containers-part-1.html>Deep dive into containers</a></li>
-		<li>Github: <a href="http://github.com/dotcloud/docker">dotcloud/docker</a></li>
-		<li>IRC: freenode #docker</li>
-		<li>Google Group: <a href="https://groups.google.com/forum/#!forum/docker-user">docker-user</a></li>
-		<li>Twitter: <a href="http://twitter.com/docker">@docker</a></li>
-		<li>Meetups: <a href="http://www.docker.io/meetups">www.docker.io/meetups</a></li>
-	</ul>
+		<li><a href="http://crosbymichael.com/creating-containers-part-1.html">Deep dive into containers</a></li>
+		<li><a href="https://github.com/veggiemonk/awesome-docker">**Curated list of Docker links**</a></li>
+		</ul>
+	</div>
+	<div style="position: absolute; left: 52%; top: 100px; width: 48%;" class="absolute-element">
+		<p><b>Get Social</b></p>
+		<ul style="text-align: left; line-height=1.1em;">
+			<li>Github: <a href="https://github.com/docker">docker</a></li>
+			<li>IRC: freenode #docker</li>
+			<li>Google Group: <a href="https://groups.google.com/forum/#!forum/docker-user">docker-user</a></li>
+			<li>Google Group: <a href="https://groups.google.com/forum/#!forum/docker-dev">docker-dev</a></li>
+			<li>Twitter: <a href="http://twitter.com/docker">@docker</a></li>
+			<li>Meetups: <a href="https://www.docker.com/community/meetups/">Docker Meetups</a></li>
+		</ul>
+	</div>
 </section>
+
+
 
 </div>
 
@@ -599,6 +579,7 @@ CMD ["nginx", "-g", "daemon off;"]
 					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
+			Reveal.configure({ slideNumber: true });
 
 		</script>
 
