@@ -125,6 +125,22 @@
 </section>
 
 <section>
+	<h2>Docker Client-Server</h2>
+	<img src="docker-img/overview.png">
+</section>
+
+<section>
+	<h2>Concepts and Interactions</h2><br>
+	<ul>
+		<li class="fragment" data-fragment-index="1">Host - the machine that is running the containers</li>
+		<li class="fragment" data-fragment-index="2">Image - a hierarchy of files, with meta-data for how to run a container</li>
+		<li class="fragment" data-fragment-index="3">Registry - a repository of images</li>
+		<li class="fragment" data-fragment-index="4">Volume - storage outside the container</li>
+		<li class="fragment" data-fragment-index="5">Dockerfile - a script for creating images</li>
+	</ul>
+</section>
+
+<section>
 	<h2>Why do we care?</h2>
 	<div style="position: absolute; left: 1%; width: 48%;" class="absolute-element">
 		<p><img src="docker-img/devs.png"></br>
@@ -268,7 +284,7 @@
 	<h2>Linux Kernel Namespaces</h2><br>
 		<ul>
 			<li class="fragment" data-fragment-index="1"><b>Mount:</b> provides file system isolation. Each container is its own root filesystem</li>
-			<li class="fragment" data-fragment-index="2"><b>Process:</b> each contaienr runs in its own process environment</li>
+			<li class="fragment" data-fragment-index="2"><b>Process:</b> each container runs in its own process environment</li>
 			<li class="fragment" data-fragment-index="3"><b>Network:</b> seperate virtual interfaces and IP addressing between containers</li>
 			<li class="fragment" data-fragment-index="4"><b>UTS:</b> allows a container to have it's own hostname independently from the host system along with other containers</li>
 			<li class="fragment" data-fragment-index="5"><b>IPC:</b> used for isolating interprocess communication, things like SysV message queues</li>
@@ -280,7 +296,7 @@
 	<h2>Control Groups (cgroups)</h2>
 		<ul>
 			<li class="fragment" data-fragment-index="1">Resource isolation and grouping</li>
-			<li class="fragment" data-fragment-index="2">Enables you to limits and contraints on a container's resources</li>
+			<li class="fragment" data-fragment-index="2">Enables you to place limits and contraints on a container's resources</li>
 			<li class="fragment" data-fragment-index="3">The following resources are allocated to each Docker container using cgroups:</li>
 			<ul>
 				<li class="fragment" data-fragment-index="3">Memory</li>
@@ -324,6 +340,75 @@
 </section>
 
 <section>
+	<h2>Docker Image</h2>
+
+	<div style="position: absolute; left: 1%; width: 48%;" class="absolute-element">
+		<ul>
+			<li class="fragment" data-fragment-index="1">You launch containers from images</li>
+			<li class="fragment" data-fragment-index="2">An image is made up of layered images (file systems)</li>
+			<li class="fragment" data-fragment-index="3">UnionFS creates a union mount which overlays the file systems</li>
+			<li class="fragment" data-fragment-index="4">When you remove a file it is marked as deleted and not actually deleted. The files will still exist in the layer where they were last present</li>
+			<li class="fragment" data-fragment-index="5">When launched, the image apears to be a flat filesystem</li>
+			<li class="fragment" data-fragment-index="6">Every line in a Dockerfile creates a new image</li>
+		</ul>
+	</div>
+	<div style="position: absolute; left: 52%; width: 48%;" class="absolute-element">
+		<img src="docker-img/docker-image.png">
+	</div>
+
+</section>
+
+<section>
+	<h2>Dockerfile </h2>
+	<pre>
+FROM debian:wheezy
+
+MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
+
+RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+RUN echo "deb http://nginx.org/packages/mainline/debian/ wheezy nginx" >> /etc/apt/sources.list
+
+ENV NGINX_VERSION 1.7.11-1~wheezy
+
+RUN apt-get update && \
+    apt-get install -y ca-certificates nginx=${NGINX_VERSION} && \
+    rm -rf /var/lib/apt/lists/*
+
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
+VOLUME ["/var/cache/nginx"]
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]
+	</pre>
+</section>
+
+<section>
+	<h2>The Basics of a Docker System</h2>
+	<p>
+		<img src="docker-img/basics-of-docker-system.png">
+	</p>
+</section>
+
+<section>
+	<h2>Dockerfile for a Node Base Image</h2>
+	<img src="docker-img/nodeimage02.png">
+</section>
+
+<section>
+	<h2>Building a Node Application</h2><br>
+	<img src="docker-img/nodeimage01.png">
+</section>
+
+<section>
+	<h2>Zonoff's Docker Common Repository</h2>
+	<img src="docker-img/nodeimage03.png">
+</section>
+
+<section>
 	<h2>Pets vs Cattle</h2>
 </section>
 
@@ -333,18 +418,6 @@
 
 <section>
 		<img src="docker-img/cattle.jpg" width="55%" height="55%">
-</section>
-
-<section>
-	<h2>Docker Client-Server</h2>
-	<img src="docker-img/overview.png">
-</section>
-
-<section>
-	<h2>What are the Basics of a Docker System?</h2>
-	<p>
-		<img src="docker-img/basics-of-docker-system.png">
-	</p>
 </section>
 
 <section>
@@ -416,6 +489,18 @@
 </section>
 
 <section>
+	<img src="docker-img/demo01.gif">
+</section>	
+
+<section>
+	<img src="docker-img/demo02.gif">
+</section>
+
+<section>
+	<img src="docker-img/demo03.gif">
+</section>
+
+<section>
 	<h2>Ecosystem Support</h2>
 	<font style="font-size: 28px; line-height: 1.1em; ">
 		<ul>
@@ -460,43 +545,13 @@
 </section>
 
 <section>
-	<h2>Docker Futures</h2>
-	<ul style="font-size: 34px; line-height: 1.1em; text-align: left; width:95%;">
-		<img style="float:right;" src="docker-img/docker-futures.png"/>
-		<li>Docker 0.7 (current release)</li>
-		<ul>
-			<li>Fedora compatibility</li>
-			<li>Reduce kernel dependencies</li>
-			<li>Device mapper</li>
-			<li>Container linking</li>
-		</ul>
-		<li>Docker 0.8 (Dec)</li>
-		<ul>
-			<li>Shrink &nbsp;and stabilize Core</li>
-			<li>Provide stable, pluggable API</li>
-			<li>RHEL compatibility</li>
-			<li>Nested containers</li>
-			<li>Beam: Introspection API based on Redis</li>
-			<li>Expand snapshot management features for data volumes</li>
-			<li>Will consider this “production ready”</li>
-		</ul>
-		<li>Docker 0.9 (Jan)</li>
-		<li>Docker 1.0 (Feb)</li>
-		<ul>
-			<li>Will offer support for this product</li>
-		</ul>
-	</ul>
-</section>
-
-<section>
 	<h2>Want to Learn More?</h2>
 	<ul>
-		<li><a href="http://www.docker.io/">www.docker.io</a></li>
-		<ul>
-			<li>Documentation</li>
-			<li>Getting started (tutorial, installation, guide, etc)</li>
-			<li>Introductory <a href="http://www.docker.io/the-whole-story/">whitepaper</a></li>
-		</ul>
+		<li><a href="https://www.docker.com/tryit/">Interactive 10-minute Tutorial</a></li>
+		<li><a href="https://github.com/wsargent/docker-cheat-sheet">Docker Cheat Sheet</a></li>
+		<li><a href="http://www.docker.com/">www.docker.com</a></li>
+
+		<li><a href=""http://crosbymichael.com/creating-containers-part-1.html>Deep dive into containers</a></li>
 		<li>Github: <a href="http://github.com/dotcloud/docker">dotcloud/docker</a></li>
 		<li>IRC: freenode #docker</li>
 		<li>Google Group: <a href="https://groups.google.com/forum/#!forum/docker-user">docker-user</a></li>
