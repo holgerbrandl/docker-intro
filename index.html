@@ -42,8 +42,8 @@
 		<img src="docker-img/docker-square.jpg" style="width: 425px; height: 376px; max-height: none; max-width: none;"/>
 		<br/>
 	</div>
-	<div>
-		This is a fork of a presentaion originally created by John Lewis (<a href="http://www.github.com/pointful">pointful</a>)<br/>
+	<div class="fragment" data-fragment-index="1">
+		This is a fork of a presentation originally created by John Lewis (<a href="http://www.github.com/pointful">pointful</a>)<br/>
 
 		The contents of the the slides have been <i>liberally borrowed</i><br/>
 		from <a href="http://www.slideshare.net/dotCloud">Docker Slideshare</a> materials.<br/>
@@ -57,8 +57,8 @@
 	<h4>The Challenge</h4>
 	<h4>Docker Containers</h4>
 	<h4>Docker Images</h4>
-	<h4>Working With Docker and Its Tools</h4>
 	<h4>Demo</h4>
+	<h4>Closing Thoughts</h4>
 </section>
 
 <section>
@@ -153,8 +153,8 @@
 	<h4>The Challenge</h4>
 	<h4>Docker Containers</h4>
 	<h4>Docker Images</h4>
-	<h4>Working With Docker and Its Tools</h4>
 	<h4>Demo</h4>
+	<h4>Closing Thoughts</h4>
 </section>
 
 <section>
@@ -216,8 +216,8 @@
 	<h4><p style="opacity:.25">The Challenge</p></h4>
 	<h4>Docker Containers</h4>
 	<h4>Docker Images</h4>
-	<h4>Working With Docker and Its Tools</h4>
 	<h4>Demo</h4>
+	<h4>Closing Thoughts</h4>
 </section>
 
 <section
@@ -244,7 +244,7 @@
 		<ul><br>
 			<li class="fragment" data-fragment-index="1">Virtual Machines are best used to allocate chunks of hardware resources</li>
 			<li class="fragment" data-fragment-index="2">Containers operate at the process level, which makes them very lightweight<br>
-				and perfect as a unit of software delievery</li><br><br><br><br>
+				and perfect as a unit of software delivery</li><br><br><br><br>
 		</ul>
 </section>
 
@@ -269,10 +269,10 @@
 		<ul>
 			<li class="fragment" data-fragment-index="1"><b>Mount:</b> provides file system isolation. Each container is its own root filesystem</li>
 			<li class="fragment" data-fragment-index="2"><b>Process:</b> each container runs in its own process environment</li>
-			<li class="fragment" data-fragment-index="3"><b>Network:</b> seperate virtual interfaces and IP addressing between containers</li>
+			<li class="fragment" data-fragment-index="3"><b>Network:</b> separate virtual interfaces and IP addressing between containers</li>
 			<li class="fragment" data-fragment-index="4"><b>UTS:</b> allows a container to have it's own hostname independently from the host system along with other containers</li>
 			<li class="fragment" data-fragment-index="5"><b>IPC:</b> used for isolating interprocess communication, things like SysV message queues</li>
-			<li class="fragment" data-fragment-index="6"><b>User:</b> allows for seperate users in the container and run as root in the contaier but not on the host's file system</li>
+			<li class="fragment" data-fragment-index="6"><b>User:</b> allows for separate users in the container and run as root in the container but not on the host's file system</li>
 		</ul>
 </section>	
 
@@ -280,7 +280,7 @@
 	<h2>Control Groups (cgroups)</h2>
 		<ul>
 			<li class="fragment" data-fragment-index="1">Resource isolation and grouping</li>
-			<li class="fragment" data-fragment-index="2">Enables you to place limits and contraints on a container's resources</li>
+			<li class="fragment" data-fragment-index="2">Enables you to place limits and constraints on a container's resources</li>
 			<li class="fragment" data-fragment-index="3">The following resources are allocated to each Docker container using cgroups:</li>
 			<ul>
 				<li class="fragment" data-fragment-index="3">Memory</li>
@@ -307,8 +307,8 @@
 	<h4><p style="opacity:.25">The Challenge</p></h4>
 	<h4><p style="opacity:.25">Docker Containers</p></h4>
 	<h4>Docker Images</h4>
-	<h4>Working With Docker and Its Tools</h4>
 	<h4>Demo</h4>
+	<h4>Closing Thoughts</h4>
 </section>
 
 <section
@@ -332,7 +332,7 @@
 			<li class="fragment" data-fragment-index="2">An image is made up of layered images (file systems)</li>
 			<li class="fragment" data-fragment-index="3">UnionFS creates a union mount which overlays the file systems</li>
 			<li class="fragment" data-fragment-index="4">When you remove a file it is marked as deleted and not actually deleted. The files will still exist in the layer where they were last present</li>
-			<li class="fragment" data-fragment-index="5">When launched, the image apears to be a flat filesystem</li>
+			<li class="fragment" data-fragment-index="5">When launched, the image appears to be a flat filesystem</li>
 			<li class="fragment" data-fragment-index="6">Every line in a Dockerfile creates a new image</li>
 		</ul>
 	</div>
@@ -399,26 +399,33 @@ CMD ["nginx", "-g", "daemon off;"]
 <section>
 	<h2>Let's review the components</h2><br>
 		<ul>
-			<li>Docker Client - allows users to create images and run containers</li>
+			<li>Dockerfile - instructions to create an image</li>
+			<li>Registry - place to host those images</li>
+			<li>Docker Client - users send build and run requests to the Docker daemon</li>
 			<li>Docker Daemon - listens for the client and talks to libcontainer</li>
 			<li>libcontainer - talks to the host's kernel and sets up namespaces and cgroups</li>
-			<li>Registry - hosts images</li>
 		</ul>
 </section>
 
 <section>
-	<h2>Dockerfile for a Node Base Image</h2>
-	<img src="docker-img/nodeimage02.png">
-</section>
+	<h1>Demo Time</h1>
+		<img src="docker-img/demo01.gif">
+</section>	
 
 <section>
-	<h2>Building a Node Application</h2><br>
-	<img src="docker-img/nodeimage01.png">
+	<h1>Sweet Demo</h1>
+	<img src="docker-img/demoworked1.gif">
 </section>
 
+
 <section>
-	<h2>Zonoff's Docker Common Repository</h2>
-	<img src="docker-img/nodeimage03.png">
+	<h2>Agenda</h2><br>
+	<h4><p style="opacity:.25">Introduction</p></h4>
+	<h4><p style="opacity:.25">The Challenge</p></h4>
+	<h4><p style="opacity:.25">Docker Containers</p></h4>
+	<h4><p style="opacity:.25">Docker Images</h4>
+	<h4><p style="opacity:.25">Demo</h4>
+	<h4>Closing Thoughts</h4>
 </section>
 
 <section>
@@ -434,88 +441,34 @@ CMD ["nginx", "-g", "daemon off;"]
 </section>
 
 <section>
-	<h2>Changes and Updates</h2>
-	<p>
-		<img src="docker-img/changes-and-updates.png">
-	</p>
-</section>
-
-<section>
 	<h2>Immutable Infrastructure</h2>
-			<ul style="font-size: 24px;">
-				<li class="fragment" data-fragment-index="1">Servers are deployed once and not changed</li>
-				<li class="fragment" data-fragment-index="2">If they are changed for some reason, they are marked for garbage collection</li>
-				<li class="fragment" data-fragment-index="3">Software is never upgraded on an existing server</li>
-				<li class="fragment" data-fragment-index="4">Instead the server is replaced with a new functionally equivalent server</li>
+			<ul>
+				<li>Servers are deployed once and not changed</li>
+				<li>If they are changed for some reason, they are marked for garbage collection</li>
+				<li>Software is never upgraded on an existing server</li>
+				<li>Instead the server is replaced with a new functionally equivalent server</li>
 			</ul>	
 </section>
 
 <section>
-	<h2>More Technical Details</h2>
-	<div style="position: absolute; left: 1%; top: 100px; width: 48%;" class="absolute-element">
-		<p><b>Why</b></p>
-		<ul style="text-align: left; line-height=1.1em;">
-			<li class="fragment" data-fragment-index="0">Run everywhere</li>
-			<ul style="font-size: 24px;" class="fragment" data-fragment-index="0">
-				<li>Regardless of kernel version</li>
-				<li>Regardless of host distro</li>
-				<li>Physical or virtual, cloud or not</li>
-				<li>Container and host architecture must match...</li>
-			</ul>
-			<li class="fragment" data-fragment-index="1">Run anything</li>
-			<ul style="font-size: 24px;" class="fragment" data-fragment-index="1">
-				<li>If it can run on the host, it can run in the container</li>
-				<li>If it can on a Linux kernel, it can run</li>
-			</ul>
-		</ul>
-	</div>
-	<div style="position: absolute; left: 52%; top: 100px; width: 48%;" class="absolute-element">
-		<p><b>What</b></p>
-		<ul style="text-align: left; line-height=1.1em;">
-			<li class="fragment" data-fragment-index="2">High level: a lightweight VM</li>
-			<ul style="font-size: 24px;" class="fragment" data-fragment-index="2">
-				<li>Own process space</li>
-				<li>Own network interface</li>
-				<li>Can run stuff as root</li>
-				<li>Can have its own /sbin/init (different from host)</li>
-				<li>&lt;&lt;machine container&gt;&gt;</li>
-			</ul>
-			<li class="fragment" data-fragment-index="3">Low level: chroot on steroids</li>
-			<ul style="font-size: 24px;" class="fragment" data-fragment-index="3">
-				<li>Can also <i>not </i>have its own /sbin/init</li>
-				<li>Container = isolated processes</li>
-				<li>Share kernel with host</li>
-				<liNo device emulation</li>
-				<li>&lt;&lt;application container&gt;&gt;</li>
-			</ul>
-		</ul>
-	</div>
+	<h2>Microservices</h2>
+		<ul>
+			<li>An ecosystem</li>
+			<li>An approach to developing a single application as a suite of small services</li>
+			<li>Each run in its own process and communicate with lightweight mechanisms, often an HTTP resource API</li> 
+			<li>These services are built around business capabilities and independently deployable by fully automated deployment machinery</li> 
+			<li>There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies.</li>
+		</ul>	
 </section>
 
 <section>
-	<h2>Docker Compose</h2>
-		<p>Compose is a tool for defining and running complex applications with Docker. With Compose, you define a multi-container application in a single file, then spin your application up in a single command which does everything that needs to be done to get it running.</p>
-</section>
-
-<section>
-	<h1>Demo Time</h1>
-</section>
-
-<section>
-	<img src="docker-img/demo01.gif">
-</section>	
-
-<section>
-	<img src="docker-img/demo02.gif">
-</section>
-
-<section>
-	<img src="docker-img/demo03.gif">
+	<h2>Agility and Precision.</h2>
 </section>
 
 <section>
 	<h2>Want to learn more?</h2>
-	<div style="position: absolute; left: 1%; top: 100px; width: 48%;" class="absolute-element">
+	http://www.dockertalk.zonoff.com
+	<div style="position: absolute; left: 1%; top: 160px; width: 48%;" class="absolute-element">
 		<p><b>Resources</b></p>
 		<ul style="text-align: left; line-height=1.1em;">
 		<li><a href="https://docs.docker.com/">Official Docker Docs</a></li>
@@ -525,7 +478,7 @@ CMD ["nginx", "-g", "daemon off;"]
 		<li><a href="https://github.com/veggiemonk/awesome-docker">**Curated list of Docker links**</a></li>
 		</ul>
 	</div>
-	<div style="position: absolute; left: 52%; top: 100px; width: 48%;" class="absolute-element">
+	<div style="position: absolute; left: 52%; top: 160px; width: 48%;" class="absolute-element">
 		<p><b>Get Social</b></p>
 		<ul style="text-align: left; line-height=1.1em;">
 			<li>Github: <a href="https://github.com/docker">docker</a></li>
@@ -536,6 +489,11 @@ CMD ["nginx", "-g", "daemon off;"]
 			<li>Meetups: <a href="https://www.docker.com/community/meetups/">Docker Meetups</a></li>
 		</ul>
 	</div>
+</section>
+
+<section>
+	<h3>Thank You!</h3>
+	<img src="docker-img/moby-dock.png">
 </section>
 
 
